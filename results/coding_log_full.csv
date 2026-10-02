@@ -130,7 +130,7 @@ timestamp,task_id,property_sentence,assigned_level,level3_source,mechanism,fix_s
 2026-10-01T02:16:23,2024-07-benddao::H-04,,,,,,,,,"no H-04.diff, but H-07.diff/H-03.diff already pass totalBidAmount to the helper - the same expression change",unchanged,1.1
 2026-10-01T02:29:10,2024-07-benddao::H-06,Users who staked through YieldEthStakingEtherfi must be able to unstake whenever they request withdrawal.,2,,other,function,,high,,"YieldAccount lacks onERC721Received, so ether.fi's _safeMint of WithdrawRequestNFT reverts",,1.1
 2026-10-01T02:29:11,2024-07-benddao::H-06,,,,,,,,,H-06.diff adds onERC721Received/onERC1155 hooks to YieldAccount,unchanged,1.1
-2026-10-01T02:42:35,2024-07-benddao::H-07,"After an isolate auction ends, only the winning (last) bidder may liquidate and receive the collateral NFT.",2,,access-control,expression,,low,B4,msgSender never compared to loanData.lastBidder,,1.1
+2026-10-01T02:42:35,2024-07-benddao::H-07,"After an isolate auction ends, only the winning (last) bidder must be able to liquidate and receive the collateral NFT.",2,,access-control,expression,,low,B4,msgSender never compared to loanData.lastBidder,,1.1
 2026-10-01T02:42:36,2024-07-benddao::H-07,,,,,,,,,H-07.diff adds require(msgSender == lastBidder),unchanged,1.1
 2026-10-01T02:55:40,2024-07-benddao::H-08,unstake/repay initiated by botAdmin must act on the position owner's yield account.,1,,logic-error,function,,high,,"step3: _unstake/_repay read yieldAccounts[msg.sender] although the same functions admit botAdmin as caller, so the bot's own (nonexistent) account is used | ",,1.1
 2026-10-01T02:55:41,2024-07-benddao::H-08,,,,,,,,,no H-08 diff in patch/,unchanged,1.1
@@ -198,3 +198,4 @@ timestamp,task_id,property_sentence,assigned_level,level3_source,mechanism,fix_s
 2026-10-01T10:56:16,2026-01-tempo-stablecoin-dex::H-02,,,,,,,,,no H-02.diff in patch/ (StablecoinDEX.sol and hints only),unchanged,1.1
 2026-10-01T11:09:23,2026-01-tempo-stablecoin-dex::H-04,A withdrawal must never exceed the withdrawer's recorded balance.,1,,missing-check,function,,low,B3,"step3: balances[user][token] -= amount sits in an unchecked block with no prior balance check, while the adjacent totalDeposits[token] -= amount is checked | underflow mints near-max balance",,1.1
 2026-10-01T11:09:24,2026-01-tempo-stablecoin-dex::H-04,,,,,,,,,no H-04.diff in patch/,unchanged,1.1
+2026-10-02T04:41:26,2024-12-secondswap::H-01,,,,,,secondswap-manager-single-stepsClaimed,,,scheme sec. 6: root_cause_group added late; shares root cause with H-02 (VestingManager keeps one stepsClaimed for all listings); all other fields unchanged from the first row,,1.1
