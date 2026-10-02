@@ -1,0 +1,28 @@
+coded: 117 / 117
+assigned_level
+2    66
+1    40
+3     8
+U     3 
+
+U = 3   threshold 12   ok
+
+mechanism x level:
+assigned_level   1   2  3  U
+mechanism                   
+access-control   6   8  2  0
+logic-error     30  32  5  2
+missing-check    4  12  1  1
+other            0  10  0  0
+reentrancy       0   4  0  0
+
+fix_scope x level:
+assigned_level   1   2  3  U
+fix_scope                   
+expression      25  19  2  1
+function        10  35  5  1
+multi-function   5  11  1  1
+none-proposed    0   1  0  0
+
+low confidence: 81
+second-look changes: 0
